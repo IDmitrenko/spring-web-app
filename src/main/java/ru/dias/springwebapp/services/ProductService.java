@@ -17,11 +17,15 @@ public class ProductService {
     }
 
     public List<Product> getAllProducts() {
-        return productRepository.getProducts();
+        return productRepository.findAll();
     }
 
     public Product getProductById(Long id) {
-        return productRepository.getProducts().get(id.intValue() - 1);
+        return productRepository.getOne(id);
+    }
+
+    public Product getProductByTitle(String title) {
+        return productRepository.findOneByTitle(title);
     }
 
     public void deleteProductById(Long id) {

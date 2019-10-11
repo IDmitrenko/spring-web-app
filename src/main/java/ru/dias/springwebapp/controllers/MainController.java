@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import ru.dias.springwebapp.entities.Product;
-import ru.dias.springwebapp.repositories.ProductRepository;
 import ru.dias.springwebapp.services.ProductService;
 
 import java.util.List;
@@ -39,6 +38,13 @@ public class MainController {
     @GetMapping("/details/{id}")
     public String detailsPage(Model model, @PathVariable("id") Long id) {
         Product selectedProduct = productService.getProductById(id);
+        model.addAttribute("selectedProduct", selectedProduct);
+        return "details";
+    }
+
+    @GetMapping("/find_by_title")
+    public String detailsPageByTitle(Model model, @RequestParam("title") String title) {
+        Product selectedProduct = productService.getProductByTitle(title);
         model.addAttribute("selectedProduct", selectedProduct);
         return "details";
     }
