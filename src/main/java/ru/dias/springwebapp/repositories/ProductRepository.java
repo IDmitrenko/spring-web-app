@@ -1,10 +1,12 @@
 package ru.dias.springwebapp.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 import ru.dias.springwebapp.entities.Product;
 
 import java.util.List;
 
+@Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
     // указываем, что мы так хотим искать по полю
     Product findOneByTitle(String title);
