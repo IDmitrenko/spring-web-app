@@ -18,8 +18,8 @@
     <div th:replace="~{navigation :: navigation(Cart)}" />
 
     <h1>Shopping Cart</h1>
-    <span th:if="${products.size() == 0}">Cart is empty</span>
-    <table th:if="${products.size() > 0}" class="table table-hover">
+    <span th:if="${items.size() == 0}">Cart is empty</span>
+    <table th:if="${items.size() > 0}" class="table table-hover">
         <thead class="thead-dark">
         <tr>
             <td>ID</td>
@@ -28,15 +28,16 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="product : ${products}">
-            <td th:text="${product.id}"/>
-            <td th:text="${product.title}"/>
-            <td th:text="${product.price}"/>
-            <td><a class="btn btn-secondary" th:href="@{'/details/' + ${product.id}}">Details</a></td>
-            <td><a class="btn btn-danger" th:href="@{'/products/delete/' + ${product.id}}">Delete</a></td>
+        <tr th:each="item : ${items}">
+            <td th:text="${item.product.id}"/>
+            <td th:text="${item.product.title}"/>
+            <td th:text="${item.product.price}"/>
+            <td><a class="btn btn-secondary" th:href="@{'/details/' + ${item.product.id}}">Details</a></td>
+            <td><a class="btn btn-danger" th:href="@{'/products/delete/' + ${item.product.id}}">Delete</a></td>
         </tr>
         </tbody>
     </table>
+    <a th:if="${items.size() > 0}" class="btn btn-success" th:href="@{/cart/create_order}" >Make order</a>
 </div>
 </body>
 </html>
